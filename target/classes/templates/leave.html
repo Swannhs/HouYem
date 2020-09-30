@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Applicaton</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!------ Include the above in your HEAD tag ---------->
+<div th:if="${param.success}">
+    <div class="alert alert-info">Your application is successfully applied
+    </div>
+</div>
+<form th:action="@{/leave}" method="post" th:object="${leave}">
+    <div class="container contact">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="fname">nom:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="fname" placeholder="nom"
+                                   name="nom" th:field="*{nom}" required autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lname">prenom:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="lname" placeholder="prenom"
+                                   name="prenom" th:field="*{prenom}" required autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="lname">Congé:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="lname" placeholder="Congé"
+                                   name="Congé" th:field="*{conge}" required autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">date_debut</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="email" placeholder="date_debut" name="from_date"
+                                   th:field="*{date_debut}" required autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">date_fin</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="email" placeholder="date_fin" name="to_date"
+                                   th:field="*{date_fin}" required autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="comment">Commentaire</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="5" id="comment"
+                                      th:field="*{commentaire}" required autofocus="autofocus"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" class="btn btn-success" th:value="Apply"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

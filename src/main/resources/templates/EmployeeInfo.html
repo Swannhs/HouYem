@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<hr class="">
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+            <h1 class="">Employee</h1>
+            <br>
+        </div>
+    </div>
+</div>
+<br>
+<div class=align-self-center"">
+    <div class="col-sm-3">
+        <!--left col-->
+        <ul class="list-group" th:object="${info}">
+            <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+            <li class="list-group-item text-left" >Nom:
+                <strong class="" th:text="${info.get().nom}"> </strong></span>
+            </li>
+            <li class="list-group-item text-left" >Prenom:
+                <strong class="" th:text="${info.get().prenom}"> </strong></span>
+            </li>
+            <li class="list-group-item text-left" >Email:
+                <strong class="" th:text="${info.get().email}"> </strong></span>
+            </li>
+            <li class="list-group-item text-left" >tel:
+                <strong class="" th:text="${info.get().tel}"> </strong></span>
+            </li>
+            <li class="list-group-item text-left" >Address:
+                <strong class="" th:text="${info.get().address}"> </strong></span>
+            </li>
+            <li class="list-group-item text-left" >Birthdate:
+                <strong class="" th:text="${info.get().birthdate}"> </strong></span>
+            </li>
+            <li class="list-group-item text-left" >fonction:
+                <strong class="" th:text="${info.get().fonction}"> </strong></span>
+            </li>
+
+
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>

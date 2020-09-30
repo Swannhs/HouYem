@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div th:if="${param.success}">
+    <div class="alert alert-info">You've successfully registered
+    </div>
+</div>
+<div>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Action</th>
+            <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="listEmployee : ${listEmployee}">
+            <th scope="row" th:text="${listEmployee.getId()}"></th>
+            <td>
+                <a th:href="'employees/'+ ${listEmployee.getId()}" th:text="${listEmployee.getNom()}"></a>
+            </td>
+            <td>
+                <a class="btn btn-success btn-sm" role="button" aria-pressed="true"
+                   th:href="'employees/edit/'+${listEmployee.getId()}" >
+                    Update
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-sm" role="button" aria-pressed="true"
+                   th:href="'employees/delete/'+${listEmployee.getId()}">
+                    Remove
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
