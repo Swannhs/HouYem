@@ -1,9 +1,9 @@
 package com.example.demo.employee.service;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.Employee;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface EmployeeServiceInterface extends UserDetailsService {
-    UserEntity save(UserEntity employee);
-    Iterable<UserEntity> findAllEmployees();
+    Employee save(Employee employee);
+    Iterable<Employee> findAllEmployees();
 }

@@ -1,7 +1,7 @@
 package com.example.demo.admin.AdminController;
 
 import com.example.demo.employee.service.EmployeeService;
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +21,12 @@ public class AdminController {
     }
 
     @ModelAttribute("employee")
-    public UserEntity employee() {
-        return new UserEntity();
+    public Employee employee() {
+        return new Employee();
     }
 
     @PostMapping("/register")
-    public String registerUserAccount(@ModelAttribute("employee") UserEntity employee) {
+    public String registerUserAccount(@ModelAttribute("employee") Employee employee) {
         service.save(employee);
         return "redirect:/admin/register?success";
     }

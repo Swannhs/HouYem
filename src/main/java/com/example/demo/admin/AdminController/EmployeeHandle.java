@@ -1,7 +1,7 @@
 package com.example.demo.admin.AdminController;
 
 import com.example.demo.employee.service.EmployeeService;
-import com.example.demo.entity.UserEntity;
+import com.example.demo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ public class EmployeeHandle {
     private EmployeeService service;
 
     @ModelAttribute("listEmployee")
-    public Iterable<UserEntity> listOfEmployee() {
+    public Iterable<Employee> listOfEmployee() {
         return service.findAllEmployees();
     }
 
@@ -40,13 +40,13 @@ public class EmployeeHandle {
     }
 
     @ModelAttribute("employee")
-    public UserEntity employee(){
-        return new UserEntity();
+    public Employee employee(){
+        return new Employee();
     }
 
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model){
-        Optional<UserEntity> employee = service.findById(id);
+        Optional<Employee> employee = service.findById(id);
         model.addAttribute("employee", employee);
         return "EmployeeUpdate";
     }

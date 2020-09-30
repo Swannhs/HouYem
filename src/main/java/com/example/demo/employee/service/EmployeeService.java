@@ -1,7 +1,7 @@
 package com.example.demo.employee.service;
 
-import com.example.demo.entity.UserEntity;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.entity.Employee;
+import com.example.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,21 +11,21 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
     @Autowired
-    private UserRepository repository;
+    private EmployeeRepository repository;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    public UserEntity save(UserEntity employee) {
+    public Employee save(Employee employee) {
         employee.setPassword(encoder.encode(employee.getPassword()));
         return repository.save(employee);
     }
 
-    public Iterable<UserEntity> findAllEmployees(){
+    public Iterable<Employee> findAllEmployees(){
         return repository.findAll();
     }
 
-    public Optional<UserEntity> findById(Long id){
+    public Optional<Employee> findById(Long id){
         return repository.findById(id);
     }
 
