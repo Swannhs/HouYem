@@ -7,7 +7,7 @@ import java.util.Collection;
 
 @Entity
 @Data
-public class UserEntity {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
