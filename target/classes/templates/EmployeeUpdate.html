@@ -129,15 +129,15 @@
                         </div>
                     </div>
 
-                    <form class="row register-form" th:action="@{/admin/register}" method="post" th:object="${employee}">
+                    <form class="row register-form" th:action="@{/admin/register}" method="post" th:object="${member}">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nom *" th:value="${employee.get().nom}"
+                                <input type="text" class="form-control" placeholder="Nom *" th:value="${member.get().nom}"
                                        th:field="*{nom}"
                                        required autofocus="autofocus"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="prenom *" th:value="${employee.get().prenom}"
+                                <input type="text" class="form-control" placeholder="prenom *" th:value="${member.get().prenom}"
                                        th:field="*{prenom}"
                                        required autofocus="autofocus"/>
                             </div>
@@ -148,7 +148,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="fonction"
-                                       th:value="${employee.get().fonction}" th:field="*{fonction}"/>
+                                       th:value="${member.get().fonction}" th:field="*{fonction}"/>
                             </div>
                             <div class="form-group">
                                 <div class="maxl">
@@ -165,23 +165,23 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Your Email *" th:value="${employee.get().email}"
+                                <input type="email" class="form-control" placeholder="Your Email *" th:value="${member.get().email}"
                                        th:field="*{email}"
                                        required autofocus="autofocus"/>
                             </div>
                             <div class="form-group">
                                 <input type="text" minlength="10" maxlength="10" name="txtEmpPhone"
-                                       class="form-control" placeholder="Tel" th:value="${employee.get().tel}" th:field="*{tel}"
+                                       class="form-control" placeholder="Tel" th:value="${member.get().tel}" th:field="*{tel}"
                                        required autofocus="autofocus"/>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Your address" th:field="*{address}"
-                                       th:value="${employee.get().address}"
+                                       th:value="${member.get().address}"
                                        required autofocus="autofocus">
                             </div>
                             <div class="form-group">
                                 <input type="date" class="form-control" placeholder="Enter Your Birthdate "
-                                       th:value="${employee.get().birthdate}" th:field="*{birthdate}"
+                                       th:value="${member.get().birthdate}" th:field="*{birthdate}"
                                        required autofocus="autofocus"/>
                             </div>
                             <input type="submit" class="btnRegister" value="Register"/>

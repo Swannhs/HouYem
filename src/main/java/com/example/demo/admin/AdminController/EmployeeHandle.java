@@ -1,7 +1,7 @@
 package com.example.demo.admin.AdminController;
 
-import com.example.demo.employee.service.EmployeeService;
-import com.example.demo.entity.Employee;
+import com.example.demo.employee.entity.Member;
+import com.example.demo.employee.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +14,10 @@ import java.util.Optional;
 @RequestMapping("/admin/employees")
 public class EmployeeHandle {
     @Autowired
-    private EmployeeService service;
+    private MemberService service;
 
     @ModelAttribute("listEmployee")
-    public Iterable<Employee> listOfEmployee() {
+    public Iterable<Member> listOfEmployee() {
         return service.findAllEmployees();
     }
 
@@ -40,13 +40,13 @@ public class EmployeeHandle {
     }
 
     @ModelAttribute("employee")
-    public Employee employee(){
-        return new Employee();
+    public Member employee(){
+        return new Member();
     }
 
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model){
-        Optional<Employee> employee = service.findById(id);
+        Optional<Member> employee = service.findById(id);
         model.addAttribute("employee", employee);
         return "EmployeeUpdate";
     }

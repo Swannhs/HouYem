@@ -29,14 +29,14 @@ public class LeaveHandle {
     @RequestMapping("/approve/{id}")
     public String approve(@PathVariable("id") Long id, Model model){
         Optional<Leave> leave = service.findById(id);
-        leave.get().setAdmin("approve");
+        leave.get().setAdmin("APPROVE");
         service.save(leave.get());
         return "redirect:/admin/leave?approved";
     }
     @RequestMapping("/reject/{id}")
     public String reject(@PathVariable("id") Long id, Model model){
         Optional<Leave> leave = service.findById(id);
-        leave.get().setAdmin("reject");
+        leave.get().setAdmin("DECLINE");
         service.save(leave.get());
         return "redirect:/admin/leave?reject";
     }
