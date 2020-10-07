@@ -1,5 +1,8 @@
 package com.example.demo.globalColtroller;
 
+import com.example.demo.employee.entity.Member;
+import com.example.demo.employee.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,8 +17,17 @@ import java.util.Collection;
 @RequestMapping("/")
 public class GlobalController {
 
+    @Autowired
+    private EmployeeRepository repository;
+
     @GetMapping("login")
     public String login(){
+        if (repository.findByNom("ADMIN") == null){
+            Member admin = new Member();
+            admin.setNom("ADMIN");
+            admin.setPassword("ADMIN");
+            repository.save(admin);
+        }
         return "login";
     }
 
