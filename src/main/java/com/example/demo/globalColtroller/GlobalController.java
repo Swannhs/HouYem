@@ -2,6 +2,7 @@ package com.example.demo.globalColtroller;
 
 import com.example.demo.employee.entity.Member;
 import com.example.demo.employee.repository.EmployeeRepository;
+import com.example.demo.employee.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,15 +19,15 @@ import java.util.Collection;
 public class GlobalController {
 
     @Autowired
-    private EmployeeRepository repository;
+    private MemberService service;
 
     @GetMapping("login")
     public String login(){
-        if (repository.findByNom("ADMIN") == null){
+        if (service.findByName("ADMIN") == null){
             Member admin = new Member();
             admin.setNom("ADMIN");
             admin.setPassword("ADMIN");
-            repository.save(admin);
+            service.save(admin);
         }
         return "login";
     }
