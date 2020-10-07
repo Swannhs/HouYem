@@ -29,6 +29,6 @@ public class GlobalController {
         if (myRole.equals(admin)) {
             return "redirect:/admin/dashboard";
         }
-        return "redirect:/leave";
+        return "redirect:/employee/home";
     }
 }

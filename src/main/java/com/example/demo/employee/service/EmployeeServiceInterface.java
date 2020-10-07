@@ -2,7 +2,7 @@ package com.example.demo.employee.service;
 
 import com.example.demo.employee.entity.Member;
 import com.example.demo.employee.entity.MemberDetails;
-import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 

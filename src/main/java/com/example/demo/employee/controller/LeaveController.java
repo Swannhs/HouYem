@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/leave")
-public class EmployeeController {
+@RequestMapping("/employee/leave")
+public class LeaveController {
     @Autowired
     private LeaveService service;
 
@@ -28,7 +28,7 @@ public class EmployeeController {
     @PostMapping
     public String leave(Leave leave){
         service.save(leave);
-        return "redirect:/leave?success";
+        return "redirect:/employee/leave?success";
     }
 }
 

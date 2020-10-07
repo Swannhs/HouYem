@@ -1,18 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
-    <!-- Latest compiled and minified CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-        .center-pill{
-            margin-left: 50px;
+        #container{
+            margin: 100px;
+            width: 1000px;
+            height: 500px;
+            box-sizing: border-box;
+        }
+        #date{
+            text-align: right;
+            margin: 10px;
+        }
+        #header h2{
+            text-align: center;
+            margin-top: 60px;
+            font-size: 30px;
+        }
+        #subject p{
+            text-align: left;
+            font-size: 24px;
+        }
+        #first p{
+            text-align: left;
+            font-size: 24px;
+            margin-left: 5rem;
+        }
+        #second p{
+            text-align: left;
+            font-size: 24px;
+        }
+        #third p{
+            text-align: left;
+            font-size: 24px;
+        }
+        #employee{
+            margin-right: 200px;
+            text-align: right;
+            font-size: 24px;
         }
     </style>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #74b9ec;">
     <a class="navbar-brand" href="#">ADMIN</a>
@@ -46,12 +82,29 @@
         <a href="/logout" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
     </div>
 </nav>
-<br>
-<div class="center-pill">
-    <a class="btn btn-success btn-md" href="/admin/employees">Manage Employees</a><br><br><br>
-    <a class="btn btn-primary btn-md" href="/admin/register">Register New Employee</a><br><br><br>
-    <a class="btn btn-danger btn-md" href="/admin/leave">View Leave</a><br><br><br>
-    <a class="btn btn-warning btn-md" href="/admin/certificate">Certificate</a>
+<div id="container" th:each="certificate : ${certificate}">
+    <div id="date">
+        <h4 th:text="${certificate.date}"></h4>
+    </div>
+    <div id="header">
+        <h2>Attestation de travail</h2>
+    </div>
+    <div id="first">
+        <p>Je  soussigné Taieb Massmoudi  le  Gérant de la e la société TELCOTEC à Tunisie atteste </p>
+    </div>
+    <div id="second">
+        <p>
+            par la  presente  que Mr./Ms. <span th:text="${certificate.name}"></span> fait partie de notre personnels en qualité de  <span th:text="${certificate.to_date}"></span> et  ce  que dépuis  <span th:text="${certificate.from_date}"></span>.
+        </p>
+    </div>
+    <div id="third">
+        <p>En foi de quoi la présente attestation est délivrée à l'intreérésse pour  servir  et  valoir  ce  que de droit .</p>
+    </div>
+    <div id="employee">
+        <h4>Le gérant</h4>
+        <h4 th:text="${certificate.employee}"></h4>
+    </div>
 </div>
 </body>
+
 </html>

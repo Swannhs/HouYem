@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        #container{
+            box-sizing: border-box;
+        }
+        #date{
+            text-align: right;
+            margin: 10px;
+        }
+        #header h2{
+            text-align: center;
+        }
+        #subject p{
+            text-align: left;
+        }
+        #first p{
+            text-align: left;
+            margin-left: 5rem;
+        }
+        #second p{
+            text-align: left;
+        }
+        #third p{
+            text-align: left;
+        }
+        #employee{
+            margin-right: 200px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="date">
+        <h4 th:text="${date}"></h4>
+    </div>
+    <div id="header">
+        <h2>Attestation de travail</h2>
+    </div>
+    <div id="first">
+        <p>Je  soussigné TAieb Massmoudi  le  Gérant de la e la société TELCOTEC à Tunisie atteste </p>
+    </div>
+    <div id="second">
+        <p>
+            par la  presente  que Mr./Ms. <span th:text="${name}"></span> fait partie de notre personnels en qualité de  <span th:text="${to_date}"></span> et  ce  que dépuis  <span th:text="${from_date}"></span>.
+        </p>
+    </div>
+    <div id="third">
+        <p>En foi de quoi la présente attestation est délivrée à l'intreérésse pour  servir  et  valoir  ce  que de droit .</p>
+    </div>
+    <div id="employee">
+        <h4>Le gérant</h4>
+        <h4 th:text="${employee}"></h4>
+    </div>
+</div>
+</body>
+</html>
