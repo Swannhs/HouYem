@@ -41,7 +41,11 @@
     </div>
 </nav>
 <div th:if="${param.success}">
-    <div class="alert alert-info">You've successfully registered
+    <div class="alert alert-success">You've successfully registered
+    </div>
+</div>
+<div th:if="${param.remove}">
+    <div class="alert alert-danger">Employee is removed
     </div>
 </div>
 <div>

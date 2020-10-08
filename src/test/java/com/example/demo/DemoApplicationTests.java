@@ -23,11 +23,6 @@ class DemoApplicationTests {
         admin.setPassword("admin");
         employeeRepository.saveAdmin(admin);
 
-        Member member = new Member();
-        member.setNom("swann");
-        member.setPassword("swann");
-        employeeRepository.save(member);
-
     }
 
 }

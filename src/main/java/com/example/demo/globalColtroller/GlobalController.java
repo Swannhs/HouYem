@@ -23,11 +23,11 @@ public class GlobalController {
 
     @GetMapping("login")
     public String login(){
-        if (service.findByName("ADMIN") == null){
+        if (service.findByName("admin") == null){
             Member admin = new Member();
-            admin.setNom("ADMIN");
-            admin.setPassword("ADMIN");
-            service.save(admin);
+            admin.setNom("admin");
+            admin.setPassword("admin");
+            service.saveAdmin(admin);
         }
         return "login";
     }

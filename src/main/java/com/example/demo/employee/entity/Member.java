@@ -21,6 +21,7 @@ public class Member {
     private String birthdate;
     private String password;
     private String fonction;
+    private String gender;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(

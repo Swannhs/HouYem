@@ -11,4 +11,6 @@ public interface CertificateRepository extends CrudRepository<CertificateEntity,
     @Override
     Iterable<CertificateEntity> findAll();
 
+    @Override
+    void deleteById(Long aLong);
 }

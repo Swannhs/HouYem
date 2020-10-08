@@ -21,5 +21,8 @@ public class CertificateService {
     public CertificateEntity findByName(String name){
         return repository.findByName(name);
     }
+    public void deleteById(Long id){
+        repository.deleteById(id);
+    }
 
 }

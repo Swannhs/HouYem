@@ -32,5 +32,12 @@ public class CertificateHandle {
         return "ViewCertificate";
     }
 
+    @RequestMapping("/delete/{id}")
+//    @PreAuthorize("hasAuthority('admin:write')")
+    public String delete(@PathVariable("id") Long id){
+        service.deleteById(id);
+        return "redirect:/admin/certificate?remove";
+    }
+
 
 }

@@ -36,7 +36,7 @@ public class EmployeeHandle {
 //    @PreAuthorize("hasAuthority('admin:write')")
     public String delete(@PathVariable("id") Long id){
         service.deleteById(id);
-        return "redirect:/admin/employees?success";
+        return "redirect:/admin/employees?remove";
     }
 
     @ModelAttribute("employee")
