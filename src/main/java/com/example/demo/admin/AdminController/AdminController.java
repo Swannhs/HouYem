@@ -4,6 +4,7 @@ import com.example.demo.employee.entity.Member;
 import com.example.demo.employee.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +34,8 @@ public class AdminController {
 
 
     @GetMapping("dashboard")
-    public String dashboard() {
-        return "dashboard";
+    public String dashboard(Model model) {
+        model.addAttribute("admin", service.findByName("admin"));
+        return "AdminProfile";
     }
 }
