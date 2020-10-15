@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 @Controller
 @RequestMapping("/employee/home")
 public class EmployeeHome {
@@ -22,8 +25,9 @@ public class EmployeeHome {
     }
 
     @GetMapping
-    public String home(Model model, Authentication authentication){
+    public String home(Model model, Authentication authentication) throws ParseException {
         model.addAttribute("member", service.findByName(authentication.getName()));
+        model.addAttribute("endDate", new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-01"));
         return "Profile";
     }
 }
