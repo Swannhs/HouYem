@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stopwatch</title>
+
+    <script th:inline="javascript">
+        //Define vars to hold time values
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+
+        //Define vars to hold "display" value
+        let displaySeconds = 0;
+        let displayMinutes = 0;
+        let displayHours = 0;
+
+        //Define var to hold setInterval() function
+        let interval = null;
+
+        //Define var to hold stopwatch status
+        let status = "stopped";
+
+        //Stopwatch function (logic to determine when to increment next value, etc.)
+        function stopWatch() {
+
+            seconds++;
+
+            //Logic to determine when to increment next value
+            if (seconds / 60 === 1) {
+                seconds = 0;
+                minutes++;
+
+                if (minutes / 60 === 1) {
+                    minutes = 0;
+                    hours++;
+                }
+
+            }
+
+            //If seconds/minutes/hours are only one digit, add a leading 0 to the value
+            if (seconds < 10) {
+                displaySeconds = "0" + seconds.toString();
+            } else {
+                displaySeconds = seconds;
+            }
+
+            if (minutes < 10) {
+                displayMinutes = "0" + minutes.toString();
+            } else {
+                displayMinutes = minutes;
+            }
+
+            if (hours < 10) {
+                displayHours = "0" + hours.toString();
+            } else {
+                displayHours = hours;
+            }
+
+            //Display updated time values to user
+            document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+
+        }
+
+
+        function startStop() {
+
+            if (status === "stopped") {
+
+                //Start the stopwatch (by calling the setInterval() function)
+                interval = window.setInterval(stopWatch, 1000);
+                document.getElementById("startStop").innerHTML = "Stop";
+                status = "started";
+
+            } else {
+
+                window.clearInterval(interval);
+                document.getElementById("startStop").innerHTML = "Start";
+                status = "stopped";
+
+            }
+
+        }
+
+
+        function submit() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        document.body.innerText = 'Response: ' + xhr.responseText;
+                    } else {
+                        document.body.innerText = 'Error: ' + xhr.status;
+                    }
+                }
+            };
+
+            var data = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+
+            xhr.open('Post', '/time', true);
+            xhr.send(data);
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div>
+        <h1 id="display">00:00:00</h1>
+    </div>
+
+    <div class="buttons">
+        <button id="startStop" onclick="startStop()">Start</button>
+
+        <button id="reset" onclick="submit()">Submit</button>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -135,7 +135,115 @@
             font-weight: 600;
             color: #0062cc;
         }
+        .container{
+            margin-left: 180px;
+            
+        }
     </style>
+    <script th:inline="javascript">
+        //Define vars to hold time values
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+
+        //Define vars to hold "display" value
+        let displaySeconds = 0;
+        let displayMinutes = 0;
+        let displayHours = 0;
+
+        //Define var to hold setInterval() function
+        let interval = null;
+
+        //Define var to hold stopwatch status
+        let status = "stopped";
+
+        //Stopwatch function (logic to determine when to increment next value, etc.)
+        function stopWatch() {
+
+            seconds++;
+
+            //Logic to determine when to increment next value
+            if (seconds / 60 === 1) {
+                seconds = 0;
+                minutes++;
+
+                if (minutes / 60 === 1) {
+                    minutes = 0;
+                    hours++;
+                }
+
+            }
+
+            //If seconds/minutes/hours are only one digit, add a leading 0 to the value
+            if (seconds < 10) {
+                displaySeconds = "0" + seconds.toString();
+            } else {
+                displaySeconds = seconds;
+            }
+
+            if (minutes < 10) {
+                displayMinutes = "0" + minutes.toString();
+            } else {
+                displayMinutes = minutes;
+            }
+
+            if (hours < 10) {
+                displayHours = "0" + hours.toString();
+            } else {
+                displayHours = hours;
+            }
+
+            //Display updated time values to user
+            document.getElementById("display").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+
+        }
+
+
+        function startStop() {
+
+            if (status === "stopped") {
+
+                //Start the stopwatch (by calling the setInterval() function)
+                interval = window.setInterval(stopWatch, 1000);
+                document.getElementById("startStop").innerHTML = "Stop";
+                status = "started";
+
+            } else {
+
+                window.clearInterval(interval);
+                document.getElementById("startStop").innerHTML = "Start";
+                status = "stopped";
+
+            }
+
+        }
+
+
+        function submit() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        document.body.innerText = 'Response: ' + xhr.responseText;
+                    } else {
+                        document.body.innerText = 'Error: ' + xhr.status;
+                    }
+                }
+            };
+
+            var data = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+            /*<![CDATA[*/
+
+            var name = /*[[${member.getNom()}]]*/ 'default';
+            console.log(name);
+
+            /*]]>*/
+            xhr.open('POST', '/time');
+            xhr.send(data,name);
+            
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #74b9ec;">
@@ -165,110 +273,125 @@
     </div>
 </nav>
 <div class="container emp-profile" th:object="${member}">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                         alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                     alt=""/>
+                <div class="file btn btn-lg btn-primary">
+                    Change Photo
+                    <input type="file" name="file"/>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h5 th:text="${member.getNom()}">
+        </div>
 
-                    </h5>
-                    <h6>
-                        Employee
-                    </h6>
-                </div>
+        <div class="container">
+
+            <div>
+                <h1 id="display">00:00:00</h1>
+            </div>
+
+            <div class="buttons">
+                <a id="startStop" onclick="startStop()">Start</a>
+
+                <a id="reset" onclick="submit()" href="/employee/home">Submit</a>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h5 id="name" th:text="${member.getNom()}">
+
+                </h5>
+                <h6>
+                    Employee
+                </h6>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>User Id</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getId()}"></p>
-                            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>User Id</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Nom</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getNom()}"></p>
-                            </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getId()}"></p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getEmail()}"></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nom</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Tel</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getTel()}"></p>
-                            </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getNom()}"></p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Prenom</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getPrenom()}"></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Fonction</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getFonction()}"></p>
-                            </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getEmail()}"></p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Address</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getAddress()}"></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Tel</label>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Date</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getBirthdate()}"></p>
-                            </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getTel()}"></p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Gender</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${member.getGender()}"></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Prenom</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getPrenom()}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Fonction</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getFonction()}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getAddress()}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Date</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getBirthdate()}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${member.getGender()}"></p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </form>
+    </div>
+
 </div>
 </body>
 </html>

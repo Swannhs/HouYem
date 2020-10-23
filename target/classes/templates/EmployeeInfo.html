@@ -4,8 +4,166 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+
+        .emp-profile {
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+
+        .profile-img {
+            text-align: center;
+        }
+
+        .profile-img img {
+            width: 70%;
+            height: 100%;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+        .profile-img .file input {
+            position: absolute;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+        .profile-head h5 {
+            color: #333;
+        }
+
+        .profile-head h6 {
+            color: #0062cc;
+        }
+
+        .profile-edit-btn {
+            border: none;
+            border-radius: 1.5rem;
+            width: 70%;
+            padding: 2%;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .proile-rating {
+            font-size: 12px;
+            color: #818182;
+            margin-top: 5%;
+        }
+
+        .proile-rating span {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .profile-head .nav-tabs {
+            margin-bottom: 5%;
+        }
+
+        .profile-head .nav-tabs .nav-link {
+            font-weight: 600;
+            border: none;
+        }
+
+        .profile-head .nav-tabs .nav-link.active {
+            border: none;
+            border-bottom: 2px solid #0062cc;
+        }
+
+        .profile-work {
+            padding: 14%;
+            margin-top: -15%;
+        }
+
+        .profile-work p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-work a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-work ul {
+            list-style: none;
+        }
+
+        .profile-tab label {
+            font-weight: 600;
+        }
+
+        .profile-tab p {
+            font-weight: 600;
+            color: #0062cc;
+        }
+    </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9be750;">
+    <a class="navbar-brand" href="#">ADMIN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/dashboard">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" style="background-color: #99c3e2;" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item text-primary" href="/admin/employees">Manage Employees</a>
+                    <a class="dropdown-item text-success" href="/admin/register">Register New Employee</a>
+                    <a class="dropdown-item text-danger" href="/admin/leave">View Leave</a>
+                    <a class="dropdown-item text-warning" href="/admin/certificate">Certificate</a>
+                </div>
+            </li>
+        </ul>
+        <a href="/logout" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</a>
+    </div>
+</nav>
 <hr class="">
 <div class="container target">
     <div class="row">
@@ -20,28 +178,28 @@
     <div class="col-sm-3">
         <ul class="list-group" th:object="${info}">
             <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-            <li class="list-group-item text-left" >Nom:
+            <li class="list-group-item text-left">Nom:
                 <strong class="" th:text="${info.get().nom}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >Prenom:
+            <li class="list-group-item text-left">Prenom:
                 <strong class="" th:text="${info.get().prenom}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >Email:
+            <li class="list-group-item text-left">Email:
                 <strong class="" th:text="${info.get().email}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >tel:
+            <li class="list-group-item text-left">tel:
                 <strong class="" th:text="${info.get().tel}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >Address:
+            <li class="list-group-item text-left">Address:
                 <strong class="" th:text="${info.get().address}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >Birthdate:
+            <li class="list-group-item text-left">Birthdate:
                 <strong class="" th:text="${info.get().birthdate}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >Gender:
+            <li class="list-group-item text-left">Gender:
                 <strong class="" th:text="${info.get().gender}"> </strong></span>
             </li>
-            <li class="list-group-item text-left" >fonction:
+            <li class="list-group-item text-left">fonction:
                 <strong class="" th:text="${info.get().fonction}"> </strong></span>
             </li>
         </ul>

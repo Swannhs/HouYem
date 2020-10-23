@@ -34,7 +34,7 @@ public class GlobalController implements ErrorController {
     }
 
     @RequestMapping("/default")
-    public String defaultAfterLogin(HttpServletRequest request) {
+    public String defaultAfterLogin() {
         Collection<? extends GrantedAuthority> authorities;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         authorities = auth.getAuthorities();

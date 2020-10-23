@@ -1,5 +1,6 @@
 package com.example.demo.employee.entity;
 
+import com.example.demo.stopwatch.WatchEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,9 +24,14 @@ public class Member {
     private String fonction;
     private String gender;
 
+    private String time;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
             name = "Role"
     )
     private Collection<Role> roles;
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "Working_Time")
+//    private Collection<WatchEntity> workTime;
 }
