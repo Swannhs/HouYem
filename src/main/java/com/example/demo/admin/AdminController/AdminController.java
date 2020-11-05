@@ -32,11 +32,6 @@ public class AdminController {
         return "redirect:/admin/register?success";
     }
 
-    @GetMapping("organigramme")
-    public String organigramme(){
-        return "image";
-    }
-
     @GetMapping("dashboard")
     public String dashboard(Model model) {
         model.addAttribute("admin", service.findByName("admin"));

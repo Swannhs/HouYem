@@ -32,6 +32,10 @@ public class GlobalController implements ErrorController {
         }
         return "login";
     }
+    @GetMapping("organigramme")
+    public String organigramme(){
+        return "image";
+    }
 
     @RequestMapping("/default")
     public String defaultAfterLogin() {
