@@ -167,103 +167,11 @@
         <a href="/logout" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</a>
     </div>
 </nav>
-<div class="container emp-profile" th:object="${admin}">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                         alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h5 th:text="${admin.getNom().toUpperCase()}">
-
-                    </h5>
-                    <h6>
-                        Manager
-                    </h6>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>User Id</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getId()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Nom</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getNom()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getEmail()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Tel</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getTel()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Prenom</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getPrenom()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Fonction</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getFonction()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Address</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getAddress()}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Date</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${admin.getBirthdate()}"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+<div class="container">
+    <div class="row">
+        <img src="https://www.linkpicture.com/q/img_9.png"
+             alt="">
+    </div>
 </div>
 </body>
 </html>

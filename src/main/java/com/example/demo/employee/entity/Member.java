@@ -1,6 +1,5 @@
 package com.example.demo.employee.entity;
 
-import com.example.demo.stopwatch.WatchEntity;
 import lombok.Data;
 
 import javax.persistence.*;
